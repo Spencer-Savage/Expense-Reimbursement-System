@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.revature</groupId>
-	<artifactId>Expense-Reimbursement-System</artifactId>
+	<artifactId>Expense-Reimbursement-System-Backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Expense Reimbursement System</name>
-	<description>The Expense Reimbursement System manages the process of reimbursing employees for expenses incurred while on company time.</description>
+	<name>Expense Reimbursement System Backend</name>
+	<description>The Expense Reimbursement System Backend manages the process of reimbursing employees for expenses incurred while on company time.</description>
 	<url/>
 	<licenses>
 		<license/>
