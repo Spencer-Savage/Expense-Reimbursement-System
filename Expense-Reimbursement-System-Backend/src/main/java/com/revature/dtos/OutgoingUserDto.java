@@ -1,15 +1,13 @@
 package com.revature.dtos;
 
-import com.revature.models.Role;
 import com.revature.models.User;
-import jakarta.persistence.Column;
 
 public class OutgoingUserDto {
     private int userId;
     private String firstName;
     private String lastName;
     private String username;
-    private Role role = Role.EMPLOYEE;
+    private String role;
 
     public OutgoingUserDto() {
     }
@@ -55,11 +53,11 @@ public class OutgoingUserDto {
         this.username = username;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

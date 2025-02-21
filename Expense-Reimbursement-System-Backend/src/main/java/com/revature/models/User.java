@@ -9,21 +9,17 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
-    @Column(nullable = false)
     private String firstName;
-    @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String username;
-    @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    private Role role = Role.EMPLOYEE;
+    private String role = "employee";
 
     public User() {
     }
 
-    public User(int userId, String firstName, String lastName, String username, String password, Role role) {
+    public User(int userId, String firstName, String lastName, String username, String password, String role) {
         this.userId = userId;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -72,11 +68,23 @@ public class User {
         this.password = password;
     }
 
-    public Role getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

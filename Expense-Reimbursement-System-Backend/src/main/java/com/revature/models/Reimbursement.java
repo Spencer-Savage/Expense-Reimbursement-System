@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import com.revature.dtos.IncomingReimbursementDto;
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,9 @@ public class Reimbursement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reimbId;
     private String description;
-    @Column(columnDefinition="Decimal(10,2)")
-    private BigDecimal amount = new BigDecimal(0);
-    private Status status = Status.PENDING;
+    private int amount = 0;
+    private String status = "PENDING";
+
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
@@ -22,7 +23,7 @@ public class Reimbursement {
     public Reimbursement() {
     }
 
-    public Reimbursement(int reimbId, String description, BigDecimal amount, Status status, User user) {
+    public Reimbursement(int reimbId, String description, int amount, String status, User user) {
         this.reimbId = reimbId;
         this.description = description;
         this.amount = amount;
@@ -46,19 +47,19 @@ public class Reimbursement {
         this.description = description;
     }
 
-    public BigDecimal getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -68,5 +69,16 @@ public class Reimbursement {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Reimbursement{" +
+                "reimbId=" + reimbId +
+                ", description='" + description + '\'' +
+                ", amount=" + amount +
+                ", status='" + status + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
