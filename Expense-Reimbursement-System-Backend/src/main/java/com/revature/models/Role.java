@@ -1,4 +1,4 @@
-package com.revature.Expense_Reimbursement_System_Backend.models;
+package com.revature.models;
 
 public enum Role {
     EMPLOYEE("employee"),

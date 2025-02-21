@@ -1,11 +1,9 @@
-package com.revature.Expense_Reimbursement_System_Backend.models;
+package com.revature.models;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
 
 @Component
 @Entity
@@ -14,13 +12,15 @@ public class Reimbursement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reimbId;
     private String description;
-    @Column(columnDefinition="Decimal(10,2)", nullable = false)
+    @Column(columnDefinition="Decimal(10,2)")
     private BigDecimal amount = new BigDecimal(0);
     private Status status = Status.PENDING;
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "userId")
     private User user;
 
+    public Reimbursement() {
+    }
 
     public Reimbursement(int reimbId, String description, BigDecimal amount, Status status, User user) {
         this.reimbId = reimbId;

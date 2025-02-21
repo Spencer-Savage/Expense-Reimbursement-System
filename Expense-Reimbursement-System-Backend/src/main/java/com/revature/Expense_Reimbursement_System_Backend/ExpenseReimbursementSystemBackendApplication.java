@@ -7,9 +7,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("com.revature.Expense_Reimbursement_System_Backend")
-@ComponentScan("ccom.revature.Expense_Reimbursement_System_Backend")
-@EnableJpaRepositories("com.revature.Expense_Reimbursement_System_Backend.daos")
+@EntityScan("com.revature.models")
+@ComponentScan("com.revature")
+@EnableJpaRepositories("com.revature.daos")
 public class ExpenseReimbursementSystemBackendApplication {
 
 	public static void main(String[] args) {

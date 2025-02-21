@@ -1,32 +1,26 @@
-package com.revature.Expense_Reimbursement_System_Backend.models;
+package com.revature.dtos;
 
-import jakarta.persistence.*;
-import org.springframework.stereotype.Component;
+import com.revature.models.Role;
+import com.revature.models.User;
+import jakarta.persistence.Column;
 
-@Component
-@Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OutgoingUserDto {
     private int userId;
-    @Column(nullable = false)
     private String firstName;
-    @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false)
     private String username;
-    @Column(nullable = false)
-    private String password;
-    @Column(nullable = false)
     private Role role = Role.EMPLOYEE;
 
-    public User(int userId, String firstName, String lastName, String username, String password, Role role) {
-        this.userId = userId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.role = role;
+    public OutgoingUserDto() {
+    }
+
+    public OutgoingUserDto(User u) {
+        this.userId = u.getUserId();
+        this.firstName = u.getFirstName();
+        this.lastName = u.getLastName();
+        this.username = u.getUsername();
+        this.role = u.getRole();
+
     }
 
     public int getUserId() {
@@ -61,19 +55,22 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Role getRole() {
         return role;
     }
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "OutgoingUserDto{" +
+                "userId=" + userId +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
+                ", role=" + role +
+                '}';
     }
 }
