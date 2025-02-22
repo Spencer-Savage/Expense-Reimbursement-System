@@ -39,10 +39,10 @@ public class AuthController {
         }
 
         session.setAttribute("userId",  outgoingUserDto.getUserId());
-        session.setAttribute("username",  outgoingUserDto.getUserId());
-        session.setAttribute("firstName",  outgoingUserDto.getUserId());
-        session.setAttribute("lastName",  outgoingUserDto.getUserId());
-        session.setAttribute("role",  outgoingUserDto.getUserId());
+        session.setAttribute("username",  outgoingUserDto.getUsername());
+        session.setAttribute("firstName",  outgoingUserDto.getFirstName());
+        session.setAttribute("lastName",  outgoingUserDto.getLastName());
+        session.setAttribute("role",  outgoingUserDto.getRole());
 
 
         return ResponseEntity.ok(outgoingUserDto);

@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.aspects.AdminOnly;
 import com.revature.dtos.OutgoingUserDto;
 import com.revature.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,14 @@ public class UserController {
         this.userService = userService;
     }
 
+    @AdminOnly
     @GetMapping
     public ResponseEntity<List<OutgoingUserDto>> getAllUsers(){
 
         return ResponseEntity.ok().body(userService.getAllUsers()) ;
     }
 
+    @AdminOnly
     @DeleteMapping("/{userId}")
     public ResponseEntity<OutgoingUserDto> deleteUser(@PathVariable int userId){
         return ResponseEntity.ok().body(userService.deleteUser(userId));

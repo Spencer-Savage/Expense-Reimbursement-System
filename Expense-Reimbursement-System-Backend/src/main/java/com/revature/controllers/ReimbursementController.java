@@ -1,5 +1,6 @@
 package com.revature.controllers;
 
+import com.revature.aspects.AdminOnly;
 import com.revature.dtos.IncomingReimbursementDto;
 import com.revature.dtos.IncomingReimbursementUpdateDto;
 import com.revature.models.Reimbursement;
@@ -32,11 +33,13 @@ public class ReimbursementController {
         return ResponseEntity.ok().body(reimService.getReimbursementsByUseId((userId)));
     }
 
+    @AdminOnly
     @GetMapping("/all")
     public ResponseEntity<List<Reimbursement>> getAllReimbursements(){
         return ResponseEntity.ok().body(reimService.getAllReimbursements());
     }
 
+    @AdminOnly
     @PatchMapping()
     public ResponseEntity<Reimbursement> updateReimbursementStatus( @RequestBody IncomingReimbursementUpdateDto updateDto){
         return ResponseEntity.ok().body(reimService.updateReimbursementStatus(updateDto));
