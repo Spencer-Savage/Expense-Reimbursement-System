@@ -67,7 +67,7 @@ public class ReimbursementService {
 
 
     public List<Reimbursement> getReimbursementsByUseId(int userId){
-        User user = userDao.findById(userId).orElseGet(null);
+        User user = userDao.findById(userId).orElse(null);
         if (user == null){
             throw new IllegalArgumentException("Invalid User Id.");
         }
@@ -80,7 +80,7 @@ public class ReimbursementService {
     }
 
     public Reimbursement updateReimbursementStatus(IncomingReimbursementUpdateDto updateDto){
-        Reimbursement reimbursement = reimDao.findById(updateDto.getReimbursementId()).orElseGet(null);
+        Reimbursement reimbursement = reimDao.findById(updateDto.getReimbursementId()).orElse(null);
         if(reimbursement == null){
             throw new IllegalArgumentException("Invalid Reimbursement Id");
         }

@@ -38,6 +38,10 @@ public class AuthService {
             throw new IllegalArgumentException("Username must be provided.");
         }
 
+        if(userDao.findByUsername(user.getUsername()).isPresent()){
+            throw new IllegalArgumentException("Username already in use. Please choose another.");
+        }
+
         return new OutgoingUserDto(userDao.save(user));
     }
     public OutgoingUserDto login(LoginDto loginDto){
@@ -55,7 +59,7 @@ public class AuthService {
 
         User returnedUser = userDao.findByUsernameAndPassword(
                 loginDto.getUsername(), loginDto.getPassword())
-                .orElseGet(null);
+                .orElse(null);
 
         if(returnedUser == null){
             throw new IllegalArgumentException("Invalid username or password.");
