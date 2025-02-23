@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface ReimbursementDao extends JpaRepository<Reimbursement, Integer> {
     List<Reimbursement>findByUser_UserId(int userId);
+    List<Reimbursement>findAllByOrderByReimbIdAsc();
+    List<Reimbursement>findByUser_UserIdOrderByReimbIdAsc(int userId);
 }

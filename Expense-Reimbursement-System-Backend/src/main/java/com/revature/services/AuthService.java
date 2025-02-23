@@ -30,16 +30,16 @@ public class AuthService {
             throw new IllegalArgumentException("Last name must be provided.");
         }
 
-        if(user.getPassword() == null || user.getPassword().isBlank()){
-            throw new IllegalArgumentException("Password must be provided.");
-        }
-
         if(user.getUsername() == null || user.getUsername().isBlank()){
             throw new IllegalArgumentException("Username must be provided.");
         }
 
         if(userDao.findByUsername(user.getUsername()).isPresent()){
-            throw new IllegalArgumentException("Username already in use. Please choose another.");
+            throw new IllegalArgumentException("Please choose a different username.");
+        }
+
+        if(user.getPassword() == null || user.getPassword().isBlank()){
+            throw new IllegalArgumentException("Password must be provided.");
         }
 
         return new OutgoingUserDto(userDao.save(user));

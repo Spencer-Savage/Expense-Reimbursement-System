@@ -29,7 +29,7 @@ public class AuthController {
         return ResponseEntity.ok(outgoingUserDto);
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<OutgoingUserDto> login(@RequestBody LoginDto loginDto, HttpSession session){
 
         OutgoingUserDto outgoingUserDto = authService.login(loginDto);

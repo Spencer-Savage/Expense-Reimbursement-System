@@ -72,11 +72,11 @@ public class ReimbursementService {
             throw new IllegalArgumentException("Invalid User Id.");
         }
 
-        return reimDao.findByUser_UserId(userId);
+        return reimDao.findByUser_UserIdOrderByReimbIdAsc(userId);
     }
 
     public List<Reimbursement> getAllReimbursements() {
-        return reimDao.findAll();
+        return reimDao.findAllByOrderByReimbIdAsc();
     }
 
     public Reimbursement updateReimbursementStatus(IncomingReimbursementUpdateDto updateDto){
