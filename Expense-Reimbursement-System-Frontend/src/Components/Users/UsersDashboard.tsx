@@ -44,19 +44,21 @@ export const UsersDashboard:React.FC = () => {
                     <td>{employee.firstName}</td>
                     <td>{employee.lastName}</td>
                     <td>{employee.role}</td>
-                    <td></td>
+                    {employee.role === "admin" ? <td></td> :
+                        <td>
+                            <button className="btn btn-danger" onClick={() => deleteEmployee(employee.userId)}>Delete</button>
+                        </td>
+                    }
                 </tr>
 
             }
             );
     };
 
-    const deleteEmployee = async (reimbursement: Reimbursement, status: string) => {
+    const deleteEmployee = async ( userId: number) => {
         //Todo: Implement deleteEmployee
         try {
-            const response = await axios.patch(`http://localhost:8080/reimbursements`, 
-                {"status": status, "reimbursementId": reimbursement.reimbId},
-                 {withCredentials:true})
+            const response = await axios.delete(`http://localhost:8080/users/${userId}`, {withCredentials:true})
             getEmployees()
         }
         catch(error: any){
