@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 public class IncomingReimbursementDto {
     private int userId;
     private String description;
-    private int amount;
+    private double amount;
 
     public IncomingReimbursementDto() {
 
     }
 
-    public IncomingReimbursementDto(int userId, String description, int amount) {
+    public IncomingReimbursementDto(int userId, String description, double amount) {
         this.userId = userId;
         this.description = description;
         this.amount = amount;
@@ -34,11 +34,11 @@ public class IncomingReimbursementDto {
         this.description = description;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

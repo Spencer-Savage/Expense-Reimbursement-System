@@ -16,7 +16,30 @@ export const SubmitReimbursement:React.FC = () => {
         setReimbursement({...reimbursement, [name]:value})
     }
 
+    const validateReimbursement = () => {
+        setError("")
+        if (reimbursement.description === ""){ 
+            setError("Please enter a description")
+            return false
+        }
+        if (reimbursement.amount <= 0){
+            setError("Please enter a valid amount")
+            return false
+        }
+        if (isNaN(reimbursement.amount)){
+            setError("Please enter a valid amount")
+            return false
+        }
+
+        return true
+    }
+
+
     const postReimbursement = async () => {
+        if (!validateReimbursement()){
+            return;
+        }
+
         try {
             await axios.post("http://localhost:8080/reimbursements", reimbursement, {withCredentials:true})
             navigate("/reimbursements-dashboard");
@@ -51,7 +74,7 @@ export const SubmitReimbursement:React.FC = () => {
                         placeholder="Enter Amount: (i.e. 100)"
                         name="amount"
                         onChange={storeValues}
-                        min={0}
+                        min={0.00}
                     />
                 </div>
 

@@ -5,7 +5,6 @@ import { Login } from './Components/Login/Login'
 import { Register } from './Components/Register/Register'
 import { ReimbursementsDashboard } from './Components/Reimbursements/ReimbursementsDashboard'
 import { UsersDashboard } from './Components/Users/UsersDashboard'
-import { NavigationBar } from './Components/NavigationBar/NavigationBar';
 import { useState } from 'react';
 import { Layout } from './Components/Layout/Layout';
 import { SubmitReimbursement } from './Components/Reimbursements/SubmitReimbursement';

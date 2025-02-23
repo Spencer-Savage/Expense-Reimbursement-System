@@ -1,8 +1,6 @@
 import { Container, FormSelect, Table } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-table/dist/bootstrap-table.min.css';
-import 'bootstrap-table/dist/bootstrap-table.min.js';
-import 'jquery/dist/jquery.min.js';
 import { useEffect, useState } from "react";
 import { Store } from "../../GlobalData/Store";
 import axios from "axios";
@@ -72,7 +70,7 @@ export const ReimbursementsDashboard:React.FC = () => {
                     <td>{reimbursement.user.firstName}</td>
                     <td>{reimbursement.user.lastName}</td>
                     <td>{reimbursement.description}</td>
-                    <td>{reimbursement.amount}</td>
+                    <td>{`$${reimbursement.amount.toFixed(2)}`}</td>
                     <td className={reimbursement.status}>{reimbursement.status}</td>
                     <td>
                         <button className="btn btn-success" onClick={() => updateReimbursement(reimbursement, "APPROVED")}>Approve</button>

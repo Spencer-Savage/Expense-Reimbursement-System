@@ -13,7 +13,7 @@ public class Reimbursement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reimbId;
     private String description;
-    private int amount = 0;
+    private double amount = 0.00;
     private String status = "PENDING";
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -23,7 +23,7 @@ public class Reimbursement {
     public Reimbursement() {
     }
 
-    public Reimbursement(int reimbId, String description, int amount, String status, User user) {
+    public Reimbursement(int reimbId, String description, double amount, String status, User user) {
         this.reimbId = reimbId;
         this.description = description;
         this.amount = amount;
@@ -47,11 +47,11 @@ public class Reimbursement {
         this.description = description;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 

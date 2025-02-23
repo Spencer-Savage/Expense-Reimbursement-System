@@ -1,14 +1,11 @@
 import { Container, FormSelect, Table } from "react-bootstrap"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-table/dist/bootstrap-table.min.css';
-import 'bootstrap-table/dist/bootstrap-table.min.js';
-import 'jquery/dist/jquery.min.js';
 import { useEffect, useState } from "react";
 import { Store } from "../../GlobalData/Store";
 import axios from "axios";
 import { WarningAlert } from "../../Alerts/WarningAlert";
 import { useNavigate } from "react-router-dom";
-import { Reimbursement } from "../../Interfaces/Reimbursement";
 import { User } from "../../Interfaces/User";
 
 export const UsersDashboard:React.FC = () => {

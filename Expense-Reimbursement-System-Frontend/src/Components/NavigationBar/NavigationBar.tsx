@@ -28,6 +28,9 @@ interface NavigationBarProps {
                         <a className="nav-item nav-link" onClick={() => navigate("/users-dashboard")}>Users</a>
                     ) : <></>}
                 </div>
+                {loginStatus !== "" ? (
+                        <a className="nav-item nav-link ms-auto me-1" href={"/"}>Logout</a>
+                    ) : <></>}
             </div>
         </nav>
     )
