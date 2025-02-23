@@ -2,10 +2,14 @@ import axios from "axios";
 import { useState } from "react";
 import { Button, Container, Form } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
-import { Store } from "../GlobalData/Store";
-import { WarningAlert } from "../Alerts/WarningAlert";
+import { Store } from "../../GlobalData/Store";
+import { WarningAlert } from "../../Alerts/WarningAlert";
 
-export const Login:React.FC = () => {
+interface LoginProps {
+    setLoggedInStatus: (status: string) => void;
+  }
+  
+  export const Login: React.FC<LoginProps> = ({ setLoggedInStatus }) => {
 
     const navigate = useNavigate();
     const [loginCreds, setLoginCreds] = useState({username:"", password:""})
@@ -27,6 +31,7 @@ export const Login:React.FC = () => {
             console.log(response.data)
             console.log("Store Data")
             console.log(Store.loggedInUser)
+            setLoggedInStatus(Store.loggedInUser.role);
             navigate("/reimbursements-dashboard");
         } catch (error: any) {
             setError(error.response.data)

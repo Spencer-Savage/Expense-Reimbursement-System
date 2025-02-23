@@ -4,11 +4,11 @@ import 'bootstrap-table/dist/bootstrap-table.min.css';
 import 'bootstrap-table/dist/bootstrap-table.min.js';
 import 'jquery/dist/jquery.min.js';
 import { useEffect, useState } from "react";
-import { Store } from "../GlobalData/Store";
+import { Store } from "../../GlobalData/Store";
 import axios from "axios";
-import { WarningAlert } from "../Alerts/WarningAlert";
+import { WarningAlert } from "../../Alerts/WarningAlert";
 import { useNavigate } from "react-router-dom";
-import { Reimbursement } from "../Interfaces/Reimbursement";
+import { Reimbursement } from "../../Interfaces/Reimbursement";
 
 
 export const ReimbursementsDashboard:React.FC = () => {
@@ -41,12 +41,10 @@ export const ReimbursementsDashboard:React.FC = () => {
 
     const getAllReimbursements = async () => {
         try {
-            alert("Getting all reimbursements")
             const response = await axios.get(`http://localhost:8080/reimbursements/all`, {withCredentials:true})
             setReimbursements(response.data)
         }
         catch(error: any){
-            console.log(error)
             setError(error.response.data)
         }
     }
@@ -90,20 +88,6 @@ export const ReimbursementsDashboard:React.FC = () => {
         try {
             const response = await axios.patch(`http://localhost:8080/reimbursements`, 
                 {"status": status, "reimbursementId": reimbursement.reimbId},
-                 {withCredentials:true})
-            console.log(response.data)
-            getAllReimbursements()
-        }
-        catch(error: any){
-            console.log(error)
-            setError(error.response.data)
-        }
-    }
-
-    const denyReimbursement = async (reimbursement: Reimbursement) => {
-        try {
-            const response = await axios.patch(`http://localhost:8080/reimbursements`, 
-                {"status": "DENIED", "reimbursementId": reimbursement.reimbId},
                  {withCredentials:true})
             console.log(response.data)
             getAllReimbursements()
