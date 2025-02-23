@@ -34,7 +34,7 @@ export const SubmitReimbursement:React.FC = () => {
 
     return(
         <Container>
-            <h1>Create New Reimbursement:</h1>
+            <h3>Create New Reimbursement:</h3>
             {error.length > 0 ? <WarningAlert message={error}/> : <></>}
                 <div>
                     <Form.Control
@@ -56,7 +56,7 @@ export const SubmitReimbursement:React.FC = () => {
                 </div>
 
                 <Button className="btn-success m-1" onClick={()=>postReimbursement()}>Submit</Button>
-                <Button className="btn-dark" onClick={()=>navigate("/")}>Cancel</Button>
+                <Button className="btn-dark" onClick={()=>navigate("/reimbursements-dashboard")}>Cancel</Button>
         </Container>
     )
 }
