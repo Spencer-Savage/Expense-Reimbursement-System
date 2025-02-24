@@ -11,7 +11,6 @@ import { User } from "../../Interfaces/User";
 export const UsersDashboard:React.FC = () => {
 
     const [employees, setEmployees] = useState([])
-    const [filter, setFilter] = useState("")
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
@@ -55,17 +54,20 @@ export const UsersDashboard:React.FC = () => {
     const deleteEmployee = async ( userId: number) => {
         //Todo: Implement deleteEmployee
         try {
-            const response = await axios.delete(`http://localhost:8080/users/${userId}`, {withCredentials:true})
+            await axios.delete(`http://localhost:8080/users/${userId}`, {withCredentials:true})
             getEmployees()
         }
         catch(error: any){
-            console.log(error)
+            if (axios.isAxiosError(error) && error.response) {
             setError(error.response.data)
-        }
+            } else {
+                setError("An unexpected error has occurred")
+            }
+    }
     }
 
     return(
-        <Container className="container">
+        <Container className="container shadow mt-20 p-5 bg-white rounded">
         <h3>User Dashboard</h3>
         {error.length > 0 ? <WarningAlert message={error} />: <></>}
 

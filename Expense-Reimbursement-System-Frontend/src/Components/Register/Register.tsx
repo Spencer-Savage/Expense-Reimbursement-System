@@ -31,14 +31,17 @@ interface RegisterProps {
             console.log(Store.loggedInUser)
             setLoggedInStatus(Store.loggedInUser.role)
             navigate("/reimbursements-dashboard");
-        } catch (error: any) {
-            setError(error.response.data)
-            console.log(error.response.data)
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                setError(error.response.data)
+                } else {
+                    setError("An unexpected error has occurred")
+                }
         }
     }
 
     return(
-        <Container>
+        <Container className="shadow mt-20 p-5 bg-white rounded d-md-flex flex-column w-50">
             <h1>Register:</h1>
             {error.length > 0 ? <WarningAlert message={error}/> : <></>}
                 <div>

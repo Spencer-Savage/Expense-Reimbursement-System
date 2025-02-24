@@ -28,7 +28,7 @@ public class ReimbursementService {
 
     @Transactional
     public Reimbursement insertReimbursement(IncomingReimbursementDto reimbursementDto){
-        // Validate input
+
         if (reimbursementDto.getUserId() < 0) {
             throw new IllegalArgumentException("User id is required");
         }
@@ -41,7 +41,7 @@ public class ReimbursementService {
             throw new IllegalArgumentException("Description must not be blank.");
         }
 
-        // Fetch associated user entity
+
         Optional<User> userOpt = userDao.findById(reimbursementDto.getUserId());
         if (userOpt.isEmpty()) {
             throw new IllegalArgumentException("User does not exist");
@@ -49,7 +49,6 @@ public class ReimbursementService {
 
         User user = userOpt.get();
 
-        // Use the managed user entity to create a reimbursement
         Reimbursement reimToInsert = new Reimbursement(
                 0,
                 reimbursementDto.getDescription(),

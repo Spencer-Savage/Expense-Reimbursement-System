@@ -3,7 +3,7 @@ import { WarningAlert } from "../../Alerts/WarningAlert"
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Store } from "../../GlobalData/Store";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export const SubmitReimbursement:React.FC = () => {
     const navigate = useNavigate();
@@ -43,9 +43,12 @@ export const SubmitReimbursement:React.FC = () => {
         try {
             await axios.post("http://localhost:8080/reimbursements", reimbursement, {withCredentials:true})
             navigate("/reimbursements-dashboard");
-        } catch (error: any) {
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
             setError(error.response.data)
-            console.log(error.response.data)
+            } else{
+                setError("An unexpected error has occurred")
+            }
         }
     }
 
@@ -56,10 +59,10 @@ export const SubmitReimbursement:React.FC = () => {
         },[])
 
     return(
-        <Container>
+        <Container className="shadow mt-20 p-5 bg-white rounded d-md-flex flex-column w-50">
             <h3>Create New Reimbursement:</h3>
             {error.length > 0 ? <WarningAlert message={error}/> : <></>}
-                <div>
+                <div className="mt-2">
                     <Form.Control
                         type="text"
                         placeholder="Enter Description of Expense: (i.e. Travel)"
@@ -68,7 +71,7 @@ export const SubmitReimbursement:React.FC = () => {
                     />
                 </div>
 
-                <div>
+                <div className="mt-2">
                     <Form.Control
                         type="numeric"
                         placeholder="Enter Amount: (i.e. 100)"
@@ -78,8 +81,8 @@ export const SubmitReimbursement:React.FC = () => {
                     />
                 </div>
 
-                <Button className="btn-success m-1" onClick={()=>postReimbursement()}>Submit</Button>
-                <Button className="btn-dark" onClick={()=>navigate("/reimbursements-dashboard")}>Cancel</Button>
+                <Button className="btn-parimary m-1" onClick={()=>postReimbursement()}>Submit</Button>
+                <Button className="btn-secondary m-1" onClick={()=>navigate("/reimbursements-dashboard")}>Cancel</Button>
         </Container>
     )
 }

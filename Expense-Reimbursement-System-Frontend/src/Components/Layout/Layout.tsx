@@ -10,9 +10,7 @@ export const Layout: React.FC<LayoutProps> = ({ loginStatus }) => {
     return (
         <div>
             <NavigationBar loginStatus={loginStatus} />
-            <main>
-                <Outlet />
-            </main>
+            <Outlet />
         </div>
     );
 };

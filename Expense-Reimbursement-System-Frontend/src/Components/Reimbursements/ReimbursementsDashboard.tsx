@@ -55,7 +55,7 @@ export const ReimbursementsDashboard:React.FC = () => {
                     <td>{reimbursement.user.firstName}</td>
                     <td>{reimbursement.user.lastName}</td>
                     <td>{reimbursement.description}</td>
-                    <td>{reimbursement.amount}</td>
+                    <td>{`$${reimbursement.amount.toFixed(2)}`}</td>
                     <td className={reimbursement.status}>{reimbursement.status}</td>
                 </tr>
             ) : null
@@ -73,8 +73,8 @@ export const ReimbursementsDashboard:React.FC = () => {
                     <td>{`$${reimbursement.amount.toFixed(2)}`}</td>
                     <td className={reimbursement.status}>{reimbursement.status}</td>
                     <td>
-                        <button className="btn btn-success" onClick={() => updateReimbursement(reimbursement, "APPROVED")}>Approve</button>
-                        <button className="btn btn-danger" onClick={() => updateReimbursement(reimbursement, "DENIED")}>Deny</button>
+                        <button className="btn btn-primary" onClick={() => updateReimbursement(reimbursement, "APPROVED")}>Approve</button>
+                        <button className="btn btn-warning m-1" onClick={() => updateReimbursement(reimbursement, "DENIED")}>Deny</button>
                         <button className="btn btn-secondary" onClick={() => updateReimbursement(reimbursement, "PENDING")}>Pending</button> 
                     </td>
                 </tr>
@@ -101,7 +101,7 @@ export const ReimbursementsDashboard:React.FC = () => {
     };
 
     return(
-        <Container className="container">
+        <Container className="container shadow mt-20 p-5 bg-white rounded">
         <h3>Reimbursement Dashboard</h3>
         {error.length > 0 ? <WarningAlert message={error} />: <></>}
 

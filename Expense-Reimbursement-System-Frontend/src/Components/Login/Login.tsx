@@ -33,14 +33,17 @@ interface LoginProps {
             console.log(Store.loggedInUser)
             setLoggedInStatus(Store.loggedInUser.role);
             navigate("/reimbursements-dashboard");
-        } catch (error: any) {
-            setError(error.response.data)
-            console.log(error.response.data)
+        } catch (error) {
+            if (axios.isAxiosError(error) && error.response) {
+                setError(error.response.data)
+                } else {
+                    setError("An unexpected error has occurred")
+                }
         }
     }
 
     return(
-        <Container>
+        <Container className="shadow mt-20 p-5 bg-white rounded d-md-flex flex-column w-50">
             <h1>Login to access:</h1>
                 <div>
                     {error.length > 0 ? <WarningAlert message={error}/> : <></>}
@@ -62,8 +65,8 @@ interface LoginProps {
                         />
                     </div>
 
-                    <Button className="btn-success m-1" onClick={()=>login()}>Login</Button>
-                    <Button className="btn-dark" onClick={()=>navigate("/register")}>Register</Button>
+                    <Button className="btn-primary m-1" onClick={()=>login()}>Login</Button>
+                    <Button className="btn-secondary" onClick={()=>navigate("/register")}>Register</Button>
                 </div>
         </Container>
     )

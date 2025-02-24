@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +27,10 @@ public class UserService {
 
 
     public List<OutgoingUserDto> getAllUsers() {
-        List<User> userList = userDao.findAll();
+        List<User> userList = userDao.findAllByOrderByFirstName().orElse(null);
+        if(userList == null){
+           userList = new ArrayList<>();
+        }
         return userList.stream().map(OutgoingUserDto::new).toList();
     }
 
